@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import AnyUrl, BaseModel
 
 from assessment import assess_policy
+from scrape import get_tos
 
 
 class WebsiteAssessmentRequest(BaseModel):
@@ -22,8 +23,7 @@ app.add_middleware(
 
 @app.post("/api/website-assessment/")
 async def assess_website(request: WebsiteAssessmentRequest):
-    with open('sample_policy.txt', 'r', encoding="utf-8") as file:
-        text = file.read()
+    text = get_tos(str(request.websiteUrl))
     
     results = assess_policy(text)
     filtered_results = [item for item in results if item["result"] == True]
