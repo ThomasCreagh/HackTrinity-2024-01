@@ -1,2 +1,2 @@
 console.log('This is a popup!');
-console.log(getURL());
+console.log(window.location.href);
