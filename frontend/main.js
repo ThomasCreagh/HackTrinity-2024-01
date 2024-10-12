@@ -5,7 +5,6 @@
   console.log(JSON.stringify({ websiteUrl: tab.url }));
   console.log(typeof (tab.url));
 
-
   fetch("http://localhost:8000/api/website-assessment/", {
     // mode: "no-cors",
     method: "POST",
@@ -16,7 +15,11 @@
       "Content-type": "application/json; charset=UTF-8"
     }
   })
-    .then(response => {
-      console.log(response.json())
+    .then(response => response.json())
+    .then(data => {
+      paragraph.appendChild(document.createTextNode(JSON.stringify(data)));
     })
+    .catch(error => {
+      console.log("ERROR:\n", error);
+    });
 })();
