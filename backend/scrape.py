@@ -35,3 +35,6 @@ def get_text_body(url: str) -> str:
     visible_texts = filter(tag_visible, text)
     actual_text = u" ".join(t.strip() for t in visible_texts)
     return actual_text[actual_text.lower().find("privacy"):]
+
+
+print(get_tos("https://medium.com"))
