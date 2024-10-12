@@ -1,20 +1,25 @@
 (async () => {
   const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
+  var paragraph = document.getElementById("test");
 
-  fetch("http://localhost:8000", {
+  console.log(JSON.stringify({ websiteUrl: tab.url }));
+  console.log(typeof (tab.url));
+
+  fetch("http://localhost:8000/api/website-assessment/", {
+    // mode: "no-cors",
     method: "POST",
     body: JSON.stringify({
       websiteUrl: tab.url,
     }),
-    // headers: {
-    //   "Content-type": "application/json; charset=UTF-8"
-    // }
+    headers: {
+      "Content-type": "application/json; charset=UTF-8"
+    }
   })
-    .then((response) => response.json())
-    .then((json) => paragraph.appendChild(document.createTextNode((json))));
-
-  // var paragraph = document.getElementById("test");
-  // var text = document.createTextNode(tab.url);
-  //
-  // paragraph.appendChild(text);
+    .then(response => response.json())
+    .then(data => {
+      paragraph.appendChild(document.createTextNode(JSON.stringify(data)));
+    })
+    .catch(error => {
+      console.log("ERROR:\n", error);
+    });
 })();
