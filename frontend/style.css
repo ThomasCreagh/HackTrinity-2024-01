@@ -96,12 +96,29 @@ body {
     font-size: 18px;
     transition: all 0.3s ease; /* Smooth transitions for hover effects */
 }
-.big-concern {
+.result {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-radius: 12px;
+    font-size: 30px;
+}
+.major-concern {
     background-color: #dc3545;
 }
-.minor-concern {
+.mild-concern {
     background-color: #ffc107;
 }
 .positive-concern {
     background-color: #3eb612;
+}
+.good-result {
+    background-color: #3eb612;
+}
+.medium-result {
+    background-color: #ffc107;
+}
+.bad-result {
+    background-color: #dc3545;
 }
