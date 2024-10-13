@@ -37,20 +37,22 @@ chain = prompt | model | parser
 def assess_policy(text: str):
     conn = sqlite3.connect('assessment.db')
     cursor = conn.cursor()
-    cursor.execute("SELECT id, criterion FROM criteria")
+    cursor.execute("SELECT id, criterion, level FROM criteria")
     rows = cursor.fetchall()
-    criteria_list = [{"id": row[0], "criterion": row[1]} for row in rows]
+    criteria_list = [{"id": row[0], "criterion": row[1], "level": row[2]} for row in rows]
     conn.close()
     criteria_json = json.dumps(criteria_list)
 
     result: CriteriaResults = chain.invoke({"criteria_json_string": criteria_json, "text": text})
     
-    formatted_result = [
-        { 
+    formatted_result = []
+    for res in result.results:
+        item = next((item for item in criteria_list if item["id"] == res.id), None)
+        formatted_result.append({
             "id": res.id, 
             "result": res.result, 
-            "criterion": next((item["criterion"] for item in criteria_list if item["id"] == res.id), None)
-        } for res in result.results
-    ]
+            "criterion": item["criterion"],
+            "level": item["level"]
+        })
 
     return formatted_result
