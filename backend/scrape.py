@@ -10,6 +10,8 @@ def get_tos(url: str) -> str:
     soup = BeautifulSoup(page.content, 'html.parser')
     links = list(filter(lambda x: "privacy" in str(
         x.contents).lower(), soup.find_all('a')))
+    if not links:
+        return ''
     link = list(map(lambda x: x.get("href"), links))
 
     if len(link) == 0:
