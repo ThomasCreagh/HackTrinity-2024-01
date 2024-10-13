@@ -34,6 +34,9 @@ app.add_middleware(
 @app.post("/api/website-assessment/")
 async def assess_website(request: WebsiteAssessmentRequest):
     text = get_tos(str(request.websiteUrl))
+    if not text:
+        return {}
+    
     hash_key = generate_hash_key(text)
 
     if hash_key in cache:
