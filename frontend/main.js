@@ -1,12 +1,8 @@
 (async () => {
   const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
-  var paragraph = document.getElementById("test");
-
-  console.log(JSON.stringify({ websiteUrl: tab.url }));
-  console.log(typeof (tab.url));
+  var numberList = document.getElementById("numberList");
 
   fetch("http://localhost:8000/api/website-assessment/", {
-    // mode: "no-cors",
     method: "POST",
     body: JSON.stringify({
       websiteUrl: tab.url,
@@ -17,7 +13,13 @@
   })
     .then(response => response.json())
     .then(data => {
-      paragraph.appendChild(document.createTextNode(JSON.stringify(data)));
+      console.log(data.results);
+      for (var i = 0; i < data.results.length; i++) {
+        var newNumberListItem = document.createElement("li");
+        var numberListValue = document.createTextNode(data.results[i].criterion);
+        newNumberListItem.appendChild(numberListValue);
+        numberList.appendChild(newNumberListItem);
+      }
     })
     .catch(error => {
       console.log("ERROR:\n", error);
