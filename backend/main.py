@@ -37,10 +37,9 @@ async def assess_website(request: WebsiteAssessmentRequest):
     hash_key = generate_hash_key(text)
 
     if hash_key in cache:
-        filtered_results = cache[hash_key]
+        assessment_result = cache[hash_key]
     else:
-        results = assess_policy(text)
-        filtered_results = [item for item in results if item["result"] == True]
-        cache[hash_key] = filtered_results
+        assessment_result = assess_policy(text)
+        cache[hash_key] = assessment_result
     
-    return {"response": "Looks good to me", "results": filtered_results}
+    return {"general_score": assessment_result.general_score, "failed_criteria": assessment_result.failed_criteria}

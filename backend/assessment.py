@@ -34,7 +34,15 @@ prompt = PromptTemplate(
 chain = prompt | model | parser
 
 
-def assess_policy(text: str):
+class AssessmentResult:
+    general_score: str
+    failed_criteria: list[dict]
+
+    def __init__(self, general_score, failed_criteria):
+        self.general_score = general_score
+        self.failed_criteria = failed_criteria
+
+def assess_policy(text: str) -> AssessmentResult:
     conn = sqlite3.connect('assessment.db')
     cursor = conn.cursor()
     cursor.execute("SELECT id, criterion, level FROM criteria")
@@ -45,14 +53,21 @@ def assess_policy(text: str):
 
     result: CriteriaResults = chain.invoke({"criteria_json_string": criteria_json, "text": text})
     
-    formatted_result = []
+    failed_criteria = []
     for res in result.results:
         item = next((item for item in criteria_list if item["id"] == res.id), None)
-        formatted_result.append({
+        failed_criteria.append({
             "id": res.id, 
             "result": res.result, 
             "criterion": item["criterion"],
             "level": item["level"]
         })
+    failed_criteria = [item for item in failed_criteria if item["result"] == True]
 
-    return formatted_result
+    general_score = (
+        "bad" if any(item["level"] == "major" for item in failed_criteria) else
+        "medium" if sum(1 for item in failed_criteria if item["level"] == "mild") > 3 else
+        "good"
+    )
+
+    return AssessmentResult(general_score, failed_criteria)
