@@ -1,0 +1,107 @@
+
+body {
+    font-family: 'Roboto', sans-serif;
+    width: 375px;
+    height: 260px;
+    padding-left: 12px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Distribute space between title and preferences */
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+.header img {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+.header h1 {
+    font-size: 18px;
+    margin: 0;
+}
+.h1 {
+    font-size: 13px;
+    font-weight: bold;
+    margin: 0;
+}
+.preferences {
+    position: relative;
+    float: right;
+    font-size: 16px;
+    color: #1a73e8;
+    text-decoration: none;
+}
+.preferences:hover {
+    text-decoration: underline;
+    color: #0b66d3;
+}
+.content-heading {
+    font-size: 16px;
+    font-weight: bold;
+    padding-bottom: px7;
+}
+.content {
+    padding: 16px;
+    overflow-y: auto; /* Enable vertical scrolling */
+    flex-grow: 1;
+}
+.status {
+    padding: 6px 10px;
+    position: relative;
+    left: 65px;
+    border-radius: 4px;
+    font-size: 48px; /* Slightly smaller */
+    font-weight: bold;
+    display: inline-block;
+    margin-left: 8px;
+}
+.negative {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.neutral {
+    background-color: #fff3cd;
+    color: #6c5d04; /* Darker text for better contrast */
+}
+
+.positive {
+    background-color: #d4edda;
+    color: #0b4a23; /* Darker green for readability */
+}
+.number-concerns {
+    position: relative;
+    left: 40px;
+    font-size: 40px;
+    font-weight: bold;
+}
+.concerns:hover {
+    filter: brightness(1.1); /* Lightens the color on hover */
+}
+.concern-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.concern {
+    padding: 13px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: all 0.3s ease; /* Smooth transitions for hover effects */
+}
+.big-concern {
+    background-color: #dc3545;
+}
+.minor-concern {
+    background-color: #ffc107;
+}
+.positive-concern {
+    background-color: #3eb612;
+}
