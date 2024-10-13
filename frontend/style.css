@@ -1,8 +1,8 @@
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
     width: 415px;
-    height: 290px;
+    height: 270px;
     padding-left: 12px;
     margin: 0;
     display: flex;
@@ -12,8 +12,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between; /* Distribute space between title and preferences */
-    padding: 10px;
     border-bottom: 1px solid #e0e0e0;
+    padding: 10px 16px; /* Increase right padding */
+    position: relative; /* Ensure absolute positioning works correctly */
+    font-size: medium;
 }
 .header img {
     width: 20px;
@@ -23,18 +25,13 @@ body {
     bottom: -3px;
 }
 .header h1 {
-    font-size: 22px;
-    margin: 0;
-}
-.h1 {
-    font-size: 13px;
-    font-weight: bold;
+    font-size: 20px;
     margin: 0;
 }
 .preferences {
     position: relative;
     float: right;
-    font-size: 20px;
+    font-size: 16px;
     color: #1a73e8;
     text-decoration: none;
 }
@@ -44,7 +41,6 @@ body {
 }
 .content-heading {
     font-size: 16px;
-    font-weight: bold;
     padding-bottom: px7;
 }
 .content {
@@ -52,33 +48,37 @@ body {
     overflow-y: auto; /* Enable vertical scrolling */
     flex-grow: 1;
 }
-.status {
-    padding: 6px 10px;
-    position: relative;
-    left: 65px;
-    border-radius: 4px;
-    font-size: 48px; /* Slightly smaller */
-    font-weight: bold;
-    display: inline-block;
-    margin-left: 8px;
+.status-container {
+    position: absolute;
+    right: 33px;
+    top: 30%;
+    transform: translateY(-50%);
+    z-index: 1; /* Ensure it's above other elements */
 }
-.negative {
+.status {
+    padding: 3px 5px;
+    border-radius: 10px;
+    font-size: 43px;
+    display: inline-block;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.status.negative {
     background-color: #f8d7da;
     color: #721c24;
 }
 
-.neutral {
+.status.neutral {
     background-color: #fff3cd;
     color: #6c5d04; /* Darker text for better contrast */
 }
 
-.positive {
+.status.positive {
     background-color: #d4edda;
     color: #0b4a23; /* Darker green for readability */
 }
 .number-concerns {
     position: relative;
-    left: 40px;
+    left: 55px;
     font-size: 40px;
     font-weight: bold;
 }
@@ -91,19 +91,15 @@ body {
     gap: 8px;
 }
 .concern {
-    padding: 13px;
+    padding: 10px;
     border-radius: 4px;
     color: white;
-    font-weight: bold;
     font-size: 18px;
     transition: all 0.3s ease; /* Smooth transitions for hover effects */
 }
 .big-concern {
-    background-color: #dc3545;
+    background-color: #FC6A7B;
 }
 .minor-concern {
-    background-color: #ffc107;
-}
-.positive-concern {
-    background-color: #3eb612;
+    background-color: #FFC170;
 }
