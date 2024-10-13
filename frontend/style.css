@@ -62,17 +62,17 @@ body {
     display: inline-block;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
-.status.negative {
+.status.bad {
     background-color: #f8d7da;
     color: #721c24;
 }
 
-.status.neutral {
+.status.medium {
     background-color: #fff3cd;
     color: #6c5d04; /* Darker text for better contrast */
 }
 
-.status.positive {
+.status.good {
     background-color: #d4edda;
     color: #0b4a23; /* Darker green for readability */
 }

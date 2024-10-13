@@ -23,25 +23,25 @@
       console.log(data);
       numberConserns.insertAdjacentText("afterbegin", data.failed_criteria.length);
 
-      var statusItem = document.createElement("div");
+      var statusItem = document.createElement("span");
 
       var statusSwitch = "";
       switch (data.general_score) {
         case "good":
-          statusSwitch = "safe";
+          statusSwitch = "Safe";
           break;
         case "medium":
-          statusSwitch = "caution";
+          statusSwitch = "Caution";
           break;
         case "bad":
-          statusSwitch = "dangerous";
+          statusSwitch = "Dangerous";
           break;
       }
 
       var statusValue = document.createTextNode(statusSwitch);
 
-      statusItem.classList.add("result");
-      statusItem.classList.add(data.general_score + "-result");
+      statusItem.classList.add("status");
+      statusItem.classList.add(data.general_score);
 
       statusItem.appendChild(statusValue);
       status.appendChild(statusItem);
