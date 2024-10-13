@@ -4,12 +4,22 @@ from bs4.element import Comment
 
 
 def get_tos(url: str) -> str:
+    main_url = url.split("/")[2]
+
     page = requests.get(url)
     soup = BeautifulSoup(page.content, 'html.parser')
     links = list(filter(lambda x: "privacy" in str(
         x.contents).lower(), soup.find_all('a')))
-    link = list(map(lambda x: x.get("href"), links))[0]
+    link = list(map(lambda x: x.get("href"), links))
 
+    if len(link) == 0:
+        page = requests.get(url.split("/")[0] + "//" + main_url)
+        soup = BeautifulSoup(page.content, 'html.parser')
+        links = list(filter(lambda x: "privacy" in str(
+            x.contents).lower(), soup.find_all('a')))
+        link = list(map(lambda x: x.get("href"), links))
+
+    link = link[0]
     main_url = url.split("/")[2]
     tos_url = link
     if main_url not in link:
