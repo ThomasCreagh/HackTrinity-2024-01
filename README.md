@@ -4,6 +4,7 @@ Hack Trinity event 1 2024
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
+- [Examples](#examples)
 
 ## Installation
 1. Clone the repository:
@@ -35,3 +36,7 @@ FRONTEND
 ![visual chrom instructions](https://developer.chrome.com/static/docs/extensions/get-started/tutorial/hello-world/image/extensions-page-e0d64d89a6acf_1440.png)
 
 Now you can can pin the extension and use it by clicking on the icon.
+
+## Examples
+![Fig1](https://github.com/ThomasCreagh/HackTrinity-2024-01/blob/main/images/Fig1.png)
+![Fig2](https://github.com/ThomasCreagh/HackTrinity-2024-01/blob/main/images/Fig2.png)
