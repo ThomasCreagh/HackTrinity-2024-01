@@ -1,8 +1,8 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    width: 375px;
-    height: 260px;
+    width: 415px;
+    height: 290px;
     padding-left: 12px;
     margin: 0;
     display: flex;
@@ -19,9 +19,11 @@ body {
     width: 20px;
     height: 20px;
     margin-right: 8px;
+    position: relative;
+    bottom: -3px;
 }
 .header h1 {
-    font-size: 18px;
+    font-size: 22px;
     margin: 0;
 }
 .h1 {
@@ -32,7 +34,7 @@ body {
 .preferences {
     position: relative;
     float: right;
-    font-size: 16px;
+    font-size: 20px;
     color: #1a73e8;
     text-decoration: none;
 }
