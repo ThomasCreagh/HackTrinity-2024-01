@@ -13,6 +13,7 @@ Hack Trinity event 1 2024
 
 2. Install dependencies:
 ```bash
+  cd backend
   pip install -r requirements.txt
  ```
 
@@ -20,6 +21,7 @@ Hack Trinity event 1 2024
 To run the project, use the following command:
 BACKEND
 ```bash
+  cd backend
   fastapi dev main.py
 ```
 FRONTEND
